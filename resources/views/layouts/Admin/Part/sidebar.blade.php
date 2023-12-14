@@ -35,8 +35,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               <li class="nav-item {{ \Route::is('/') ? 'active' : '' }}" >
-                <a href="{{ '/' }}/" class="nav-link">
+               <li class="nav-item" >
+                <a href="/dashboard" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Dashboard
@@ -60,7 +60,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../../index2.html" class="nav-link">
+                    <a href="/posts" class="nav-link {{ Request::is('posts') ? 'active' : '' }}">
                       <i class="far fa-solid fa-box-archive nav-icon"></i>
                       <p>Lihat Post</p>
                     </a>

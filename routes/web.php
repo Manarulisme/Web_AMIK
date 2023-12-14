@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('Admin_pages.dashboard');
+    return view('Admin_pages.Post_page.Post.create_post');
 });
+
+Route::resource('/posts', PostController::class);
+
