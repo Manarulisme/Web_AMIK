@@ -10,13 +10,13 @@
 
             <div class="pull-left">
 
-                <h2>Laravel 10 CRUD with Image Upload Example from scratch - ItSolutionStuff.com</h2>
+                <h2>Post</h2>
 
             </div>
 
             <div class="pull-right">
 
-                <a class="btn btn-success" href="{{ route('products.create') }}"> Create New Product</a>
+                <a class="btn btn-success" href="{{ route('posts.create') }}"> Create New Product</a>
 
             </div>
 
@@ -46,37 +46,41 @@
 
             <th>Image</th>
 
-            <th>Name</th>
+            <th>Judul</th>
 
-            <th>Details</th>
+            <th>Kategori</th>
+
+            <th>Deskripsi</th>
 
             <th width="280px">Action</th>
 
         </tr>
 
-        @foreach ($products as $product)
+        @foreach ($posts as $post)
 
         <tr>
 
-            <td class="text-center">{{ ++$i }}</td>
+            <td class="text-center">{{++$i}}</td>
 
-            <td class="text-center"><img src="/gambar/{{ $product->image }}" width="100px"></td>
+            <td class="text-center"><img src="/gambar/{{ $post->image }}" width="100px"></td>
 
-            <td>{{ $product->name }}</td>
+            <td>{{ $post->judul }}</td>
 
-            <td class="potongText">{!! substr($product->detail, 0, 100) !!} ...</td>
+            <td>{{ $post->kategori_post }}</td>
+
+            <td class="potongText">{!! substr($post->deskripsi , 0, 100) !!} ...</td>
 
             <td class="text-center">
 
-                <form action="{{ route('products.destroy',$product->id) }}" method="POST">
+                <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
 
 
 
-                    <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>
+                    <a class="btn btn-info" href="{{ route('posts.show',$post->id) }}">Show</a>
 
 
 
-                    <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
+                    <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">Edit</a>
 
 
 

@@ -19,6 +19,6 @@ Route::get('/', function () {
     return view('Admin_pages.Post_page.Post.create_post');
 });
 
-Route::resource('/posts', PostController::class);
+Route::resource('/dashboard/posts', PostController::class);
 
 Route::resource('products', ProductController::class);

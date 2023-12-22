@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('optional', function (Blueprint $table) {
+        Schema::create('optionals', function (Blueprint $table) {
             $table->id();
-            $table->string('kategori');
+            $table->string('kategori_name');
             $table->string('tags');
             $table->timestamps();
         });
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('optioanl');
+        Schema::dropIfExists('optionals');
     }
 };

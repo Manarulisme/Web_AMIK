@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('post', function (Blueprint $table) {
+        Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            $table->text('isi');
-            $table->string('image');
+            // $table->string('slug')->nullable()->change()->unique();
+            $table->string('kategori_post');
+            $table->text('deskripsi');
+            $table->text('image');
             $table->timestamps();
+            // $table->unsignedBigInteger('optionals_id');
+            // $table->foreign('optionals_id')->references('id')->on('optionals');
         });
     }
 
@@ -25,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('post');
+        Schema::dropIfExists('posts');
     }
 };

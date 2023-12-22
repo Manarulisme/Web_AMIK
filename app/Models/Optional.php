@@ -9,5 +9,6 @@ class Optional extends Model
 {
     use HasFactory;
 
-    protected $table = 'Optional';
+    protected $table = 'optionals';
+    protected $fillable =['kategori', 'tags'];
 }

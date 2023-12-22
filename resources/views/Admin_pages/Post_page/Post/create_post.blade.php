@@ -10,13 +10,13 @@
 
         <div class="pull-left">
 
-            <h2>Add New Product</h2>
+            <h2>Tambah Post</h2>
 
         </div>
 
         <div class="pull-right">
 
-            <a class="btn btn-primary" href="{{ route('products.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('posts.index') }}"> Back</a>
 
         </div>
 
@@ -48,7 +48,7 @@
 
 
 
-<form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
 
     @csrf
 
@@ -60,9 +60,9 @@
 
             <div class="form-group">
 
-                <strong>Name:</strong>
+                <strong>Judul:</strong>
 
-                <input type="text" name="name" class="form-control" placeholder="Name">
+                <input type="text" name="judul" class="form-control" placeholder="judul">
 
             </div>
 
@@ -72,9 +72,29 @@
 
             <div class="form-group">
 
-                <strong>Detail:</strong>
+                <strong>Kategori:</strong>
 
-                <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail"></textarea>
+                <select name="kategori_post" class="form-control" aria-label="Default select example">
+                    <option>Pilih Kategori</option>
+                    @foreach ($kategori_post as $kategori_type )
+                    <option value="{{$kategori_type->kategori_name}}">{{$kategori_type->kategori_name}}</option>
+
+                    @endforeach
+
+                  </select>
+
+
+            </div>
+
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-12">
+
+            <div class="form-group">
+
+                <strong>Deskripsi</strong>
+
+                <textarea class="form-control" style="height:150px" name="deskripsi" placeholder="deskripsi"></textarea>
 
             </div>
 
@@ -106,7 +126,7 @@
 
 <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace( 'detail' );
+    CKEDITOR.replace( 'deskripsi' );
 </script>
 
 
