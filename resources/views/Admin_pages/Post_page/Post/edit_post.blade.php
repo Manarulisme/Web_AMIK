@@ -48,7 +48,7 @@
 
 
 
-<form action=#" method="POST" enctype="multipart/form-data">
+<form action="{{ route('posts.update',$posts->id) }}" method="POST" enctype="multipart/form-data">
 
     @csrf
 
@@ -64,7 +64,7 @@
 
                 <strong>Judul:</strong>
 
-                <input type="text" name="judul" value="{{ $posts->judul }}" class="form-control" placeholder="Name">
+                <input type="text" name="judul" value="{{ old('judul',$posts->judul)  }}" class="form-control" placeholder="judul">
 
             </div>
 

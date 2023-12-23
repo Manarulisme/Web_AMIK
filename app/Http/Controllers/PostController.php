@@ -83,9 +83,10 @@ class PostController extends Controller
     {
         $request->validate([
 
-            'name' => 'required',
-
-            'detail' => 'required'
+            'judul' => 'required',
+            'kategori_post' => 'required',
+            'deskripsi' => 'required',
+            'image' => 'required|image|mimes:png,jpg,jpeg|max:2048',
 
         ]);
 
