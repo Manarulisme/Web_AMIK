@@ -4,130 +4,104 @@
 
 @section('isi')
 
-<div class="row">
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card border-0 shadow-sm rounded">
+                <div class="card-body">
+                    <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
 
-    <div class="col-lg-12 margin-tb">
+                        @csrf
 
-        <div class="pull-left">
+                        <div class="form-group">
+                            <label class="font-weight-bold">Gambar Sampul</label>
+                            <input type="file" class="form-control @error('img_sampul') is-invalid @enderror" name="img_sampul">
 
-            <h2>Tambah Post</h2>
+                            <!-- error message untuk title -->
+                            @error('img_sampul')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
 
+                        <div class="form-group">
+                            <label for="judul" class="font-weight-bold">Judul</label>
+                            <input type="text" id="judul" class="form-control" name="judul">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="slug" class="font-weight-bold">Slug</label>
+                            <input type="text" id="slug" class="form-control" name="slug" disabled readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="font-weight-bold">Detail</label>
+                            <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="detail" rows="5" placeholder="Masukkan Konten Post">{{ old('detail') }}</textarea>
+
+                            <!-- error message untuk detail -->
+                            @error('detail')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label class="font-weight-bold">Kategori</label>
+                            <select name="category_id" class="form-control" aria-label="Default select example">
+                                <option>Pilih Kategori</option>
+                                @foreach ($categories as $kategori_type )
+                                <option value="{{$kategori_type->name}}">{{$kategori_type->name}}</option>
+
+                                @endforeach
+
+                            </select>
+                        </div>
+{{--
+                        <div class="mb-6 ">
+                            <label class="block">
+                                <span class="text-gray-700">Select Category</span>
+                                <select name="category_id" class="block w-full mt-1 rounded-md">
+                                    @foreach ($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name_categories}}</option>
+                                    @endforeach
+                                </select>
+                            </label>
+                            @error('category_id')
+                            <div class="text-sm text-red-600">{{ $message }}</div>
+                            @enderror
+                        </div> --}}
+
+
+                        <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
+                        <button type="reset" class="btn btn-md btn-warning">RESET</button>
+
+                    </form>
+                </div>
+            </div>
         </div>
-
-        <div class="pull-right">
-
-            <a class="btn btn-primary" href="{{ route('posts.index') }}"> Back</a>
-
-        </div>
-
     </div>
-
 </div>
 
 
+<script>
+    const judul = document.querySelector('#judul');
+    const slug = document.querySelector('#slug');
 
-@if ($errors->any())
-
-    <div class="alert alert-danger">
-
-        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-
-        <ul>
-
-            @foreach ($errors->all() as $error)
-
-                <li>{{ $error }}</li>
-
-            @endforeach
-
-        </ul>
-
-    </div>
-
-@endif
-
-
-
-<form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
-
-    @csrf
-
-
-
-     <div class="row">
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-
-            <div class="form-group">
-
-                <strong>Judul:</strong>
-
-                <input type="text" name="judul" class="form-control" placeholder="judul">
-
-            </div>
-
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-
-            <div class="form-group">
-
-                <strong>Kategori:</strong>
-
-                <select name="kategori_post" class="form-control" aria-label="Default select example">
-                    <option>Pilih Kategori</option>
-                    @foreach ($kategori_post as $kategori_type )
-                    <option value="{{$kategori_type->kategori_name}}">{{$kategori_type->kategori_name}}</option>
-
-                    @endforeach
-
-                  </select>
-
-
-            </div>
-
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-
-            <div class="form-group">
-
-                <strong>Deskripsi</strong>
-
-                <textarea class="form-control" style="height:150px" name="deskripsi" placeholder="deskripsi"></textarea>
-
-            </div>
-
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-
-            <div class="form-group">
-
-                <strong>Image:</strong>
-
-                <input type="file" name="image" class="form-control" placeholder="image">
-
-            </div>
-
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-
-                <button type="submit" class="btn btn-primary">Submit</button>
-
-        </div>
-
-    </div>
-
-
-
-</form>
+    judul.addEventListener('change', function(){
+        fetch('/dashboard/posts/checkSlug?judul=' + judul.value)
+        .then(response => response.json())
+        .then(data => slug.value = data.slug)
+    });
+</script>
 
 <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 <script>
     CKEDITOR.replace( 'deskripsi' );
 </script>
+
+
 
 
 @endsection

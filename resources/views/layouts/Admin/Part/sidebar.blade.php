@@ -56,13 +56,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{ route('products.create') }}" class="nav-link {{ Request::is('products/create') ? 'active' : '' }}">
+                    <a href="#" class="nav-link {{ Request::is('products/create') ? 'active' : '' }}">
                       <i class="far fa-regular fa-square-plus nav-icon"></i>
                       <p>Post Baru</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ route('products.index') }}" class="nav-link {{ Request::is('products') ? 'active' : '' }}">
+                    <a href="#" class="nav-link {{ Request::is('products') ? 'active' : '' }}">
                       <i class="far fa-solid fa-box-archive nav-icon"></i>
                       <p>Lihat Post</p>
                     </a>

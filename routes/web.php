@@ -1,9 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,10 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('Admin_pages.Post_page.Post.create_post');
-});
+// Route::get('/', function () {
+//     return view('Admin_pages.Post_page.Post.index_post');
+// });
 
 Route::resource('/dashboard/posts', PostController::class);
 
-Route::resource('products', ProductController::class);
+Route::get('/', [PostController::class,'index']);
+
+
+Route::get('/dashboard/posts/checkSlug', [PostController::class, 'checkSlug']);

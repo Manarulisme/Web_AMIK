@@ -14,13 +14,11 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('judul');
-            // $table->string('slug')->nullable()->change()->unique();
-            $table->string('kategori_post');
-            $table->text('deskripsi');
-            $table->text('image');
+            $table->longText('detail');
+            $table->string('img_sampul');
+            $table->string('slug')->unique()->nullable();
             $table->timestamps();
-            // $table->unsignedBigInteger('optionals_id');
-            // $table->foreign('optionals_id')->references('id')->on('optionals');
+            $table->foreignId('category_id');
         });
     }
 

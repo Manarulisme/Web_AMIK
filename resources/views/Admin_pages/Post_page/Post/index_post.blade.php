@@ -4,105 +4,79 @@
 
 @section('isi')
 
+<div class="container mt-5">
     <div class="row">
-
-        <div class="col-lg-12 margin-tb">
-
-            <div class="pull-left">
-
-                <h2>Post</h2>
-
+        <div class="col-md-12">
+            <div class="card border-0 shadow-sm rounded">
+                <div class="card-body">
+                <h1>
+                    @section('title')
+                    # All Post
+                    @endsection
+                </h1>
+                    <a href="{{ route('posts.create') }}" class="btn btn-md btn-success mb-3">TAMBAH POST</a>
+                    <table class="table table-bordered" id="example" style="width: 100%;">
+                        <thead>
+                          <tr>
+                            <th scope="col">NO.</th>
+                            <th scope="col">SAMPUL</th>
+                            <th scope="col">JUDUL</th>
+                            <th scope="col">KATEGORI</th>
+                            <th scope="col">DESKRIPSI</th>
+                            <th scope="col">AKSI</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          @forelse ($posts as $post)
+                            <tr>
+                                <td>{{ ++$i; }}</td>
+                                <td class="text-center">
+                                    <img src="{{ asset('/storage/images/'.$post->img_sampul) }}" class="rounded" style="width: 150px">
+                                </td>
+                                <td>{{ $post->judul }}</td>
+                                <td>{{$post->category_id}}</td>
+                                <td>{!! $post->detail !!}</td>
+                                <td class="text-center">
+                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                                        <a href="{{ route('posts.show', $post->slug) }}" class="btn btn-sm btn-dark">SHOW</a>
+                                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                    </form>
+                                </td>
+                            </tr>
+                          @empty
+                              <div class="alert alert-danger">
+                                  Data Post belum Tersedia.
+                              </div>
+                          @endforelse
+                        </tbody>
+                      </table>
+                </div>
             </div>
-
-            <div class="pull-right">
-
-                <a class="btn btn-success" href="{{ route('posts.create') }}"> Create New Product</a>
-
-            </div>
-
         </div>
-
     </div>
+</div>
 
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
+</script>
 
+    <script>
+        //message with toastr
+        @if(session()->has('success'))
 
-    @if ($message = Session::get('success'))
+            toastr.success('{{ session('success') }}', 'BERHASIL!');
 
-        <div class="alert alert-success">
+        @elseif(session()->has('error'))
 
-            <p>{{ $message }}</p>
+            toastr.error('{{ session('error') }}', 'GAGAL!');
 
-        </div>
-
-    @endif
-
-
-
-    <table class="table table-bordered bg-white">
-
-        <tr class="text-center">
-
-            <th>No</th>
-
-            <th>Image</th>
-
-            <th>Judul</th>
-
-            <th>Kategori</th>
-
-            <th>Deskripsi</th>
-
-            <th width="280px">Action</th>
-
-        </tr>
-
-        @foreach ($posts as $post)
-
-        <tr>
-
-            <td class="text-center">{{++$i}}</td>
-
-            <td class="text-center"><img src="/gambar/{{ $post->image }}" width="100px"></td>
-
-            <td>{{ $post->judul }}</td>
-
-            <td>{{ $post->kategori_post }}</td>
-
-            <td class="potongText">{!! substr($post->deskripsi , 0, 100) !!} ...</td>
-
-            <td class="text-center">
-
-                <form action="{{ route('posts.destroy',$post->id) }}" method="POST">
-
-
-
-                    <a class="btn btn-info" href="{{ route('posts.show',$post->id) }}">Show</a>
-
-
-
-                    <a class="btn btn-primary" href="{{ route('posts.edit',$post->id) }}">Edit</a>
-
-
-
-                    @csrf
-
-                    @method('DELETE')
-
-
-
-                    <button type="submit" class="btn btn-danger">Delete</button>
-
-                </form>
-
-            </td>
-
-        </tr>
-
-        @endforeach
-
-    </table>
-
-
+        @endif
+    </script>
 
 
 
