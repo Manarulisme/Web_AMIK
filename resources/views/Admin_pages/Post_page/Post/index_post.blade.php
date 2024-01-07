@@ -17,28 +17,29 @@
                     <a href="{{ route('posts.create') }}" class="btn btn-md btn-success mb-3">TAMBAH POST</a>
                     <table class="table table-bordered" id="example" style="width: 100%;">
                         <thead>
-                          <tr>
+                          <tr class="text-center">
                             <th scope="col">NO.</th>
                             <th scope="col">SAMPUL</th>
-                            <th scope="col">JUDUL</th>
-                            <th scope="col">KATEGORI</th>
-                            <th scope="col">DESKRIPSI</th>
+                            <th scope="col">DAFTAR POST</th>
                             <th scope="col">AKSI</th>
                           </tr>
                         </thead>
                         <tbody>
                           @forelse ($posts as $post)
                             <tr>
-                                <td>{{ ++$i; }}</td>
+                                <td class="text-center">{{ ++$i; }}</td>
                                 <td class="text-center">
-                                    <img src="{{ asset('/storage/images/'.$post->img_sampul) }}" class="rounded" style="width: 150px">
+                                    <img src="{{ asset('/storage/images/'.$post->img_sampul) }}" class="rounded" style="width: 70px">
                                 </td>
-                                <td>{{ $post->judul }}</td>
-                                <td>{{$post->category_id}}</td>
-                                <td>{!! $post->detail !!}</td>
+                                <td>
+                                    <span class="font-weight-bold">{{ $post->judul }}</span>
+                                    {!! $post->detail !!}
+                                    <span>Kategori: {{ $post->Kategori->name  }}</span> |
+                                    <span>Objek: {{ $post->Objek->nama  }}</span>
+                                </td>
                                 <td class="text-center">
                                     <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                                        <a href="{{ route('posts.show', $post->slug) }}" class="btn btn-sm btn-dark">SHOW</a>
+                                        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-sm btn-dark">SHOW</a>
                                         <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                         @csrf
                                         @method('DELETE')
@@ -51,6 +52,8 @@
                                   Data Post belum Tersedia.
                               </div>
                           @endforelse
+
+
                         </tbody>
                       </table>
                 </div>

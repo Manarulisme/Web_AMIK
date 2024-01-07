@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Post extends Model
 {
@@ -12,8 +13,14 @@ class Post extends Model
 
     protected $guarded=['id'];
 
-    public function Category(){
-        return $this->belongsTo(Category::class);
+    public function Kategori(): BelongsTo
+    {
+        return $this->belongsTo(Kategori::class);
+    }
+
+    public function Objek(): BelongsTo
+    {
+        return $this->belongsTo(Objek::class);
     }
 
     public function getRouteKey()

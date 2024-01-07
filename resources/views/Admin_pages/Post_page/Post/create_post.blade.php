@@ -13,6 +13,62 @@
 
                         @csrf
 
+                          <div class="form-group">
+                            <label for="judul" class="font-weight-bold @error('judul') is-invalid @enderror">Judul Post</label>
+                            <input type="text" id="judul" class="form-control" name="judul">
+
+                            @error('judul')
+                            <div class="alert alert-danger mt-2">
+                                {{ ('isi cuy judulnya') }}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label class="font-weight-bold">Kategori Post</label>
+                            <select name="kategori_id" class="form-control" aria-label="Default select example">
+                                <option>Pilih Kategori</option>
+                                @foreach ($kategori as $kategori_type )
+                                <option value="{{$kategori_type->id}}">{{$kategori_type->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="font-weight-bold">Objek Post</label>
+                            <select name="objek_id" class="form-control" aria-label="Default select example">
+                                <option>Pilih Objek</option>
+                                @foreach ($select_objek as $objek_type )
+                                <option value="{{$objek_type->id}}">{{$objek_type->nama}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="font-weight-bold">Tambahkan ke Headline</label>
+                            <select name="headline" class="form-control">
+                                <option value="">-Pilih-</option>
+                                <option @if(old('headline')=='Ya') selected @endif value="Ya">Ya</option>
+                                <option @if(old('headline')=='Tidak') selected @endif value="Tidak">Tidak</option>
+                              </select>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label class="font-weight-bold">Detail</label>
+                            <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="detail" rows="5" placeholder="Masukkan Detail Post">{{ old('detail') }}</textarea>
+
+                            <!-- error message untuk detail -->
+                            @error('detail')
+                                <div class="alert alert-danger mt-2">
+                                    {{ ('isi cuy detailnya') }}
+                                </div>
+                            @enderror
+                        </div>
+
                         <div class="form-group">
                             <label class="font-weight-bold">Gambar Sampul</label>
                             <input type="file" class="form-control @error('img_sampul') is-invalid @enderror" name="img_sampul">
@@ -20,61 +76,12 @@
                             <!-- error message untuk title -->
                             @error('img_sampul')
                                 <div class="alert alert-danger mt-2">
-                                    {{ $message }}
+                                    {{ ('isi cuy foto sampulnya') }}
                                 </div>
                             @enderror
                         </div>
 
-                        <div class="form-group">
-                            <label for="judul" class="font-weight-bold">Judul</label>
-                            <input type="text" id="judul" class="form-control" name="judul">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="slug" class="font-weight-bold">Slug</label>
-                            <input type="text" id="slug" class="form-control" name="slug" disabled readonly>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="font-weight-bold">Detail</label>
-                            <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="detail" rows="5" placeholder="Masukkan Konten Post">{{ old('detail') }}</textarea>
-
-                            <!-- error message untuk detail -->
-                            @error('detail')
-                                <div class="alert alert-danger mt-2">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label class="font-weight-bold">Kategori</label>
-                            <select name="category_id" class="form-control" aria-label="Default select example">
-                                <option>Pilih Kategori</option>
-                                @foreach ($categories as $kategori_type )
-                                <option value="{{$kategori_type->name}}">{{$kategori_type->name}}</option>
-
-                                @endforeach
-
-                            </select>
-                        </div>
-{{--
-                        <div class="mb-6 ">
-                            <label class="block">
-                                <span class="text-gray-700">Select Category</span>
-                                <select name="category_id" class="block w-full mt-1 rounded-md">
-                                    @foreach ($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->name_categories}}</option>
-                                    @endforeach
-                                </select>
-                            </label>
-                            @error('category_id')
-                            <div class="text-sm text-red-600">{{ $message }}</div>
-                            @enderror
-                        </div> --}}
-
-
-                        <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
+                        <button type="submit" class="btn btn-md btn-success">SIMPAN</button>
                         <button type="reset" class="btn btn-md btn-warning">RESET</button>
 
                     </form>
@@ -98,7 +105,7 @@
 
 <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace( 'deskripsi' );
+    CKEDITOR.replace( 'detail' );
 </script>
 
 

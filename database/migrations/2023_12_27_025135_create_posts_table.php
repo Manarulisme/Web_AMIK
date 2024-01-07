@@ -17,8 +17,14 @@ return new class extends Migration
             $table->longText('detail');
             $table->string('img_sampul');
             $table->string('slug')->unique()->nullable();
+            $table->string('headline');
             $table->timestamps();
-            $table->foreignId('category_id');
+            $table->unsignedBigInteger('kategori_id');
+            $table->foreign('kategori_id')->references('id')->on('kategoris');
+            $table->unsignedBigInteger('objek_id');
+            $table->foreign('objek_id')->references('id')->on('objeks');
+            // $table->foreignId('categori_id');
+            // $table->foreignId('objek_id');
         });
     }
 

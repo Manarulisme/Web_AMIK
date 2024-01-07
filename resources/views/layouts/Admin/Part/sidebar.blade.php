@@ -16,7 +16,7 @@
 
         </div>
         <div class="info">
-          <a href="#" class="d-block">Admin 1</a>
+          <a href="#" class="d-block">{{ auth()->user()->name }}</a>
         </div>
       </div>
 
@@ -38,7 +38,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item" >
-                <a href="/dashboard" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
+                <a href="{{ url('/dashboard') }}" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     Dashboard
@@ -56,13 +56,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="#" class="nav-link {{ Request::is('products/create') ? 'active' : '' }}">
+                    <a href="{{ url('dashboard/posts/create') }}" class="nav-link {{ Request::is('posts/create') ? 'active' : '' }}">
                       <i class="far fa-regular fa-square-plus nav-icon"></i>
                       <p>Post Baru</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="#" class="nav-link {{ Request::is('products') ? 'active' : '' }}">
+                    <a href="{{ url('dashboard/posts') }}" class="nav-link {{ Request::is('/posts') ? 'active' : '' }}">
                       <i class="far fa-solid fa-box-archive nav-icon"></i>
                       <p>Lihat Post</p>
                     </a>

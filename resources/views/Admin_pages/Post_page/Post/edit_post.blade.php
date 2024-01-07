@@ -4,113 +4,59 @@
 
 @section('isi')
 
+<div class="container mt-5 mb-5">
     <div class="row">
+        <div class="col-md-12">
+            <div class="card border-0 shadow-sm rounded">
+                <div class="card-body">
+                    <form action="{{ route('posts.update', $post->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
 
-        <div class="col-lg-12 margin-tb">
+                        <div class="form-group">
+                            <label class="font-weight-bold">GAMBAR</label>
+                            <input type="file" class="form-control" name="img_sampul">
+                        </div>
 
-            <div class="pull-left">
+                        <div class="form-group">
+                            <label class="font-weight-bold">JUDUL</label>
+                            <input type="text" class="form-control @error('judul') is-invalid @enderror" name="judul" value="{{ old('judul', $post->judul) }}" placeholder="Masukkan Judul Post">
 
-                <h2>Edit Post</h2>
+                            <!-- error message untuk judul -->
+                            @error('judul')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
 
+                        <div class="form-group">
+                            <label class="font-weight-bold">Detail</label>
+                            <textarea class="form-control @error('detail') is-invalid @enderror" name="detail" rows="5" placeholder="Masukkan Konten Post">{{ old('detail', $post->detail) }}</textarea>
+
+                            <!-- error message untuk detail -->
+                            @error('detail')
+                                <div class="alert alert-danger mt-2">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+
+                        <button type="submit" class="btn btn-md btn-primary">UPDATE</button>
+                        <button type="reset" class="btn btn-md btn-warning">RESET</button>
+
+                    </form>
+                </div>
             </div>
-
-            <div class="pull-right">
-
-                <a class="btn btn-primary" href="{{ route('posts.index') }}"> Back</a>
-
-            </div>
-
         </div>
-
     </div>
+</div>
 
-
-
-    @if ($errors->any())
-
-        <div class="alert alert-danger">
-
-            <strong>Whoops!</strong> There were some problems with your input.<br><br>
-
-            <ul>
-
-                @foreach ($errors->all() as $error)
-
-                    <li>{{ $error }}</li>
-
-                @endforeach
-
-            </ul>
-
-        </div>
-
-    @endif
-
-
-
-    <form action="#" method="POST" enctype="multipart/form-data">
-
-        @csrf
-
-        @method('PUT')
-
-
-
-         <div class="row">
-
-            <div class="col-xs-12 col-sm-12 col-md-12">
-
-                <div class="form-group">
-
-                    <strong>Name:</strong>
-
-                    <input type="text" name="name" value="{{old('judul',$posts->judul) }}" class="form-control" placeholder="Name">
-
-                </div>
-
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-12">
-
-                <div class="form-group">
-
-                    <strong>Deskripsi :</strong>
-
-                    <textarea class="form-control" style="height:150px" name="detail" placeholder="Detail">{{ old('deskripsi',$posts->deskripsi)  }}</textarea>
-
-                </div>
-
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-12">
-
-                <div class="form-group">
-
-                    <strong>Image:</strong>
-
-                    <input type="file" name="image" class="form-control" placeholder="image">
-
-                    <img src="/gambar/{{ $posts->image }}" width="300px">
-
-                </div>
-
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-
-              <button type="submit" class="btn btn-primary">Submit</button>
-
-            </div>
-
-        </div>
-
-
-
-    </form>
-
-    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 <script>
-    CKEDITOR.replace( 'detail' );
+CKEDITOR.replace( 'detail' );
 </script>
 
 @endsection
