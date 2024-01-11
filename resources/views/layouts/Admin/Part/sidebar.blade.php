@@ -56,33 +56,27 @@
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="{{ url('dashboard/posts/create') }}" class="nav-link {{ Request::is('posts/create') ? 'active' : '' }}">
+                    <a href="{{ url('dashboard/posts/create') }}" class="nav-link {{ Request::is('dashboard/posts/create') ? 'active' : '' }}">
                       <i class="far fa-regular fa-square-plus nav-icon"></i>
                       <p>Post Baru</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ url('dashboard/posts') }}" class="nav-link {{ Request::is('/posts') ? 'active' : '' }}">
+                    <a href="{{ url('dashboard/posts') }}" class="nav-link {{ Request::is('dashboard/posts') ? 'active' : '' }}">
                       <i class="far fa-solid fa-box-archive nav-icon"></i>
                       <p>Lihat Post</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../../index3.html" class="nav-link">
+                    <a href="{{ route('kategori.index') }}" class="nav-link {{ Request::is('dashboard/kategori') ? 'active' : '' }}">
                       <i class="far fa-solid fa-list nav-icon"></i>
                       <p>Kategori</p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="../../index3.html" class="nav-link">
+                    <a href="{{ route('slideshow.index') }}" class="nav-link {{ Request::is('dashboard/slideshow') ? 'active' : '' }}">
                       <i class="far fa-solid fa-panorama nav-icon"></i>
                       <p>Slideshow</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="/headline" class="nav-link">
-                      <i class="far fa-solid fa-star nav-icon"></i>
-                      <p>Headline</p>
                     </a>
                   </li>
                 </ul>

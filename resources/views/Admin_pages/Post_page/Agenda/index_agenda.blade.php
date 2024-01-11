@@ -14,7 +14,7 @@
                     # All Post
                     @endsection
                 </h1>
-                    <a href="{{ route('posts.create') }}" class="btn btn-md btn-success mb-3">TAMBAH POST</a>
+                    <a href="{{ route('agendaterdekat.create') }}" class="btn btn-md btn-success mb-3">TAMBAH AGENDA</a>
                     <table class="table table-bordered" id="example" style="width: 100%;">
                         <thead>
                           <tr class="text-center">
@@ -25,22 +25,23 @@
                           </tr>
                         </thead>
                         <tbody>
-                          @forelse ($posts as $post)
+                          @forelse ($agendas as $agenda)
                             <tr>
                                 <td class="text-center">{{ ++$i; }}</td>
                                 <td class="text-center">
-                                    <img src="{{ asset('/storage/images/'.$post->img_sampul) }}" class="rounded" style="width: 70px">
+                                    <img src="{{ asset('/storage/agenda/'.$agenda->img_agenda) }}" class="rounded" style="width: 70px">
                                 </td>
                                 <td>
-                                    <span class="font-weight-bold">{{ $post->judul }}</span>
-                                    {!! substr($post->detail,0,100) !!}</br>
-                                    <span class="text-danger">Kategori: {{ $post->Kategori->name  }}</span> |
-                                    <span class="text-info">Objek: {{ $post->Objek->nama  }}</span> | <span class="text-success">Headline: {{ $post->headline }}</span>
+                                    <span class="font-weight-bold">{{ $agenda->judul }}</span>
+                                    {!! $agenda->detail !!}
+                                    <span>Tanggal: {{ date('d F Y',  strtotime($agenda->date_start)) }} s.d {{ date('d F Y', strtotime($agenda->date_finish)) }}</span> |
+                                    <span>Waktu: {{ $agenda->time_start  }} - {{ $agenda->time_finish }}</span> | <span>Lokasi: {{ $agenda->lokasi }}</span></br>
+                                    <span>Link Maps: <a href="{{ url($agenda->maps)}}" target="_blank">{{ $agenda->maps }}</a></span>
                                 </td>
                                 <td class="text-center">
-                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                                        <a href="{{ route('posts.show', $post->id) }}" class="btn btn-sm btn-dark">SHOW</a>
-                                        <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                    <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('agendaterdekat.destroy', $agenda->id) }}" method="POST">
+                                        <a href="{{ route('posts.show', $agenda->id) }}" class="btn btn-sm btn-dark">SHOW</a>
+                                        <a href="{{ route('posts.edit', $agenda->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>

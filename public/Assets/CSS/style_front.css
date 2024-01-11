@@ -1,0 +1,9 @@
+.card:hover{
+    background-color: rgb(250, 249, 247);
+    /* box-shadow: 10px 10px; */
+}
+
+p{
+    text-align: justify;
+    text-indent: 40px;
+}

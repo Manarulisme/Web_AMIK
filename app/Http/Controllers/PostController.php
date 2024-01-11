@@ -76,10 +76,10 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $slug): View
+    public function show(string $id): View
     {
          //get post by ID
-         $post = Post::findOrFail($slug);
+         $post = Post::findOrFail($id);
 
          //render view with post
          return view('Admin_pages.Post_page.Post.show_post', compact('post'));
@@ -92,9 +92,11 @@ class PostController extends Controller
     {
          //get post by ID
          $post = Post::findOrFail($id);
+         $kategori = Kategori::all();
+         $objek= Objek::all();
 
          //render view with post
-         return view('Admin_pages.Post_page.Post.edit_post', compact('post'));
+         return view('Admin_pages.Post_page.Post.edit_post', compact('post', 'kategori','objek'));
     }
 
     /**
@@ -104,11 +106,15 @@ class PostController extends Controller
     {
          //validate form
          $this->validate($request, [
-            'img_sampul'   => 'required|image|mimes:jpeg,jpg,png|max:2048',
-            'judul'        => 'required|min:5',
-            'detail'       => 'required|min:10'
+            'img_sampul'     => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'judul'     => 'required|min:5',
+            'detail'   => 'required|min:10',
+            'headline' => 'required',
+            'kategori_id' => 'required',
+            'objek_id' => 'required'
         ]);
 
+        // dd($request);
         //get post by ID
         $post = Post::findOrFail($id);
 
@@ -126,7 +132,11 @@ class PostController extends Controller
             $post->update([
                 'img_sampul'     => $img_sampul->hashName(),
                 'judul'     => $request->judul,
-                'detail'   => $request->detail
+                'slug'     => $request->slug,
+                'detail'   => $request->detail,
+                'headline'   => $request->headline,
+                'kategori_id'   => $request->kategori_id,
+                'objek_id'   => $request->objek_id
             ]);
 
         } else {
@@ -134,8 +144,13 @@ class PostController extends Controller
             //update post without image
             $post->update([
                 'judul'     => $request->judul,
-                'detail'   => $request->detail
+                'detail'   => $request->detail,
+                'headline'   => $request->headline,
+                'kategori_id'   => $request->kategori_id,
+                'objek_id'   => $request->objek_id
             ]);
+            // unset($post['img_sampul']);
+
         }
 
         //redirect to index

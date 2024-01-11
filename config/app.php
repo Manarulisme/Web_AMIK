@@ -185,4 +185,14 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    // 'providers' => [
+    //     // ...
+    //     Yajra\DataTables\DataTablesServiceProvider::class,
+    // ],
+
+    // 'aliases' => [
+
+    //     'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+    // ]
+
 ];
