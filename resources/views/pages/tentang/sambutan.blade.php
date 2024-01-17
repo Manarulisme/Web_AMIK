@@ -24,14 +24,15 @@ Sambutan Ketua Yayasan
               <div class="col-md-3">
                 <img class="img-fluid" src="{{ asset('/storage/images/'.$sambutans->img_sampul) }}" width="100%" height="auto">
                 </div>
+
                 <div class="col-md-9">
                     <p class="lh-sm">
                         {!! $sambutans->detail !!}
                     </p>
-
-
                 </div>
             </div>
+
+            Di
     </div>
 </div>
 

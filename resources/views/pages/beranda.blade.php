@@ -59,21 +59,31 @@ Beranda
 
                 <div class="col p-2">
                     <div class="card h-100 border border-2 shadow-sm ">
+
                         <img src="{{ asset('/storage/images/'.$inform->img_sampul) }}" class="img-fluid card-img-top" alt="...">
+
                         <div class="card-body">
-                            <h6 class="card-title">{{ $inform->judul }}</h6>
+                            <h6 class="card-title">
+                                <a href="/post/{{ $inform->slug }}" class="text-decoration-none text-dark">{{ $inform->judul }}</a>
+                                </h6>
 
                         </div>
                         <div class="card-footer">
+
                             <span><i class="fa-solid fa-calendar-days"></i></span>
                             <small>{{ $inform->updated_at->diffForHumans() }}</small>
-                            <a class="badge bg-danger text-wrap text-decoration-none">{{ $inform->Kategori->name }}</a>
+                            <span class="ms-2"><i class="fa-solid fa-hashtag"></i></i></i></span>
+                            <small>{{ $inform->Kategori->name }}</small>
                         </div>
                     </div>
                 </div>
                 @endforeach
 
-
+            </div>
+            <div class="text-end">
+                <a class="btn btn-danger" href="{{ url('/allposts') }}">Selengkapnya
+                    <i class="fa-solid fa-angle-right"></i>
+                </a>
             </div>
         </div>
 
@@ -90,15 +100,22 @@ Beranda
                     <div class="card h-100 border-secondary-emphasis shadow">
                         <img src="{{ asset('/storage/agenda/'.$agenda->img_agenda) }}" class="card-img-top img-fluid" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $agenda->judul }}</h5>
-                            <p class="card-text">
-                                <span>
-                                    Tanggal: {{ $agenda->date_start }} s/d {{ $agenda->date_finish }}
+                            <h5 class="card-title">
+                                <a href="/agendaterdekat/{{ $agenda->slug }}" class="text-decoration-none text-dark">{{ $agenda->judul }}</a></h5>
+                                <span class="card-text">
+                                    <i class="fa-regular fa-calendar-days"></i>
+                                        {{ date('d M Y',strtotime($agenda->date_start)) }} s/d
+                                        {{ date('d M Y', strtotime($agenda->date_finish)) }}</br>
+                                        <i class="fa-regular fa-clock"></i>
+                                        {{ $agenda->time_start }} - {{ $agenda->time_finish }} WIB</br>
+                                        <i class="fa-solid fa-link"></i>
+                                        <a href="{{ $agenda->maps }}" class="text-decoration-none">{{ $agenda->maps }}</a>
                                 </span>
-                            </p>
                         </div>
                         <div class="card-footer">
-                            <small class="text-body-secondary">{{ $agenda->updated_at->diffForHumans() }}</small>
+                            <small class="text-body-secondary">
+                                <i class="fa-solid fa-location-dot"></i>
+                             {{ $agenda->lokasi }}</small>
                         </div>
                     </div>
                 </div>
@@ -106,6 +123,13 @@ Beranda
                 @endforeach
 
             </div>
+
+            <div class="text-end">
+                <a class="btn btn-danger" href="{{ url('/allagendas') }}">Selengkapnya
+                    <i class="fa-solid fa-angle-right"></i>
+                </a>
+            </div>
+
         </div>
     </div>
 

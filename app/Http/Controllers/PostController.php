@@ -22,7 +22,7 @@ class PostController extends Controller
     {
          //get posts
         // $posts = DB::table('posts')->orderBy('id','desc')->get();
-        $posts = Post::all();
+        $posts = Post::orderBy('id', 'desc')->paginate(5);
         $i=0;
          //render view with posts
          return view('Admin_pages.Post_page.Post.index_post', compact('posts', 'i'));

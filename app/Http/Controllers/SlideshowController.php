@@ -37,7 +37,7 @@ class SlideshowController extends Controller
  // return $request;
         //validate form
         $this->validate($request, [
-            'img_slideshow'     => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'img_slideshow'     => 'required|image|mimes:jpeg,jpg,png|min:100',
             'judul'     => 'required|min:5',
             'top_slideshow'     => 'required',
             'deskripsi'   => 'required|min:10'

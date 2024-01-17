@@ -7,6 +7,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class AgendaController extends Controller
 {
@@ -50,10 +51,12 @@ class AgendaController extends Controller
                 $img_agenda = $request->file('img_agenda');
                 $img_agenda->storeAs('public/agenda', $img_agenda->hashName());
 
+                $slug = Str::slug($request->judul, '-');
                 //create post
                 Agenda::create([
                     'img_agenda'     => $img_agenda->hashName(),
                     'judul'     => $request->judul,
+                    'slug'     => $slug,
                     'date_start'     => $request->date_start,
                     'date_finish'     => $request->date_finish,
                     'time_start'     => $request->time_start,

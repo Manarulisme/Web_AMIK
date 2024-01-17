@@ -20,14 +20,16 @@
                           <tr class="text-center">
                             <th scope="col">NO.</th>
                             <th scope="col">SAMPUL</th>
-                            <th scope="col">DAFTAR POST</th>
+                            <th scope="col" style="width: 500px;">DAFTAR POST</th>
                             <th scope="col">AKSI</th>
                           </tr>
                         </thead>
                         <tbody>
                           @forelse ($posts as $post)
                             <tr>
-                                <td class="text-center">{{ ++$i; }}</td>
+                                <td class="text-center">
+                                    {{ ++$i; }}
+                                </td>
                                 <td class="text-center">
                                     <img src="{{ asset('/storage/images/'.$post->img_sampul) }}" class="rounded" style="width: 70px">
                                 </td>
@@ -56,6 +58,13 @@
 
                         </tbody>
                       </table>
+
+
+          <div id="pagination" class="mt-3">
+            {{ $posts->links() }}
+        </div>
+
+
                 </div>
             </div>
         </div>

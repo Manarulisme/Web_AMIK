@@ -59,3 +59,24 @@ Route::resource('/dashboard/agendaterdekat', AgendaController::class)->middlewar
 Route::get('/sambutan-direktur', [FrontController::class, 'sambutan']);
 Route::get('/visi-misi', [FrontController::class, 'visimisi']);
 Route::get('/struktur-organisasi', [FrontController::class, 'struktur']);
+Route::get('/fasilitas', [FrontController::class, 'fasilitas']);
+Route::get('/jurusan', [FrontController::class, 'jurusan']);
+Route::get('/kurikulum', [FrontController::class, 'kurikulum']);
+Route::get('/matakuliah', [FrontController::class, 'matakuliah']);
+Route::get('/biayakuliah', [FrontController::class, 'biayakuliah']);
+Route::get('/staff-pengajar', [FrontController::class, 'staffpengajar']);
+Route::get('/allposts', [FrontController::class, 'allposts']);
+Route::get('/allagendas', [FrontController::class, 'allagendas']);
+
+// show slug
+Route::get('/post/{post:slug}', [FrontController::class, 'show']);
+Route::get('/agendaterdekat/{agenda:slug}', [FrontController::class, 'ShowAgenda']);
+
+// show from objeks
+Route::get('/staffposts', [FrontController::class, 'staffposts']);
+Route::get('/mhsposts', [FrontController::class, 'mhsposts']);
+Route::get('/alumniposts', [FrontController::class, 'alumniposts']);
+Route::get('/mitraposts', [FrontController::class, 'mitraposts']);
+Route::get('/pengunjungposts', [FrontController::class, 'pengunjungposts']);
+Route::get('/kontak', [FrontController::class, 'kontak']);
+

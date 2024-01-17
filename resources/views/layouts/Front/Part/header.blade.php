@@ -11,22 +11,22 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Staff</a>
+                        <a class="nav-link text-white" href="{{ url('/staffposts') }}">Staff</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Mahasiswa</a>
+                        <a class="nav-link text-white" href="{{ url('/mhsposts') }}">Mahasiswa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Alumni</a>
+                        <a class="nav-link text-white" href="{{ url('/alumniposts') }}">Alumni</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Mitra</a>
+                        <a class="nav-link text-white" href="{{ url('/mitraposts') }}">Mitra</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="#">Pengunjung</a>
+                        <a class="nav-link text-white" href="{{ url('/pengunjungposts') }}">Pengunjung</a>
                     </li>
                       <li class="nav-item">
-                          <a class="nav-link text-white" href="#">
+                          <a class="nav-link text-white" href="{{ url('/kontak') }}">
                               <i class="fa-regular fa-envelope" style="margin-right: 5px"></i>Kontak</a>
                             </li>
                             <form class="d-flex" role="search">
@@ -57,17 +57,18 @@
                         <li><a class="dropdown-item" href="#">Sejarah</a></li>
                         <li><a class="dropdown-item" href="{{ url('visi-misi') }}">Visi Misi</a></li>
                         <li><a class="dropdown-item" href="{{ url('/struktur-organisasi') }}">Struktur Organisasi</a></li>
-                        <li><a class="dropdown-item" href="#">Fasilitas</a></li>
+                        <li><a class="dropdown-item" href="{{ url('/fasilitas') }}">Fasilitas</a></li>
                       </ul>
                   </li>
                   <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Akademik</a>
                       <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Jurusan</a></li>
-                          <li><a class="dropdown-item" href="#">Mata Kuliah</a></li>
-                          <li><a class="dropdown-item" href="#">Biaya Kuliah</a></li>
-                          <li><a class="dropdown-item" href="#">Kalender Akademik</a></li>
-                          <li><a class="dropdown-item" href="#">Kegiatan Akademik</a></li>
+                          <li><a class="dropdown-item" href="{{ url('/jurusan') }}">Jurusan</a></li>
+                          <li><a class="dropdown-item" href="{{ url('/kurikulum') }}">Kurikulum</a></li>
+                          <li><a class="dropdown-item" href="{{ url('/matakuliah') }}">Mata Kuliah</a></li>
+                          <li><a class="dropdown-item" href="{{ url('/biayakuliah') }}">Biaya Kuliah</a></li>
+                          <li><a class="dropdown-item" href="{{ url('/staff-pengajar') }}">Staff Pengajar</a></li>
+                          <li><a class="dropdown-item" href="{{ url('/allagendas') }}">Agenda Akademik</a></li>
                       </ul>
                   </li>
               <li class="nav-item dropdown">

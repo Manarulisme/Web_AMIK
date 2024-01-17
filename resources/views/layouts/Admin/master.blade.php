@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
 
-    @vite([])
 </head>
 <body class="hold-transition sidebar-mini">
 
